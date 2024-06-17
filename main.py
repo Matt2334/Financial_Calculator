@@ -10,7 +10,7 @@ def PV():
     fv = int(input("Enter Future Value: "))
     r = int(input("Enter Interest rate per period: "))/100
     n = int(input("Enter the number of periods: "))
-    return round(fv / (1+r)**n, 2)
+    return f"\nYour Present Value is: {round(fv / (1+r)**n, 2)}"
 
 # Net Present Value = sum (Ct/(1+r)^t)-C0
 def npv():
@@ -37,8 +37,11 @@ def annuity():
 
 
 # Loan Amortization -> PMT = ((P*r) * (1+r)**n) / (1+r)**n -1
-def load_amortization():
-    pass
+def loan_amortization():
+   P =  int(input("Enter your Principal Amount: "))
+   r = int(input("Enter your Monthly Interest Rate: "))/100
+   n = int(intput("Enter the number of monthly payments: "))
+   return ((P*r) * (1+r)**n) / ((1+r)**n) - 1
 
 # Compound Interest -> A = P * (1+r/n)**(n*t)
 def compound_interest():
@@ -49,12 +52,23 @@ def simple_interest():
     pass
 
 # Dividend Discount Model (DDM) -> P0 = D1/(r-g)
+def dividend_discount_model():
+    pass
+
 
 def main():
-    print(npv())
-
-
-
+    choices = {
+        "fv": FV, "future value": FV,
+        "pv": PV, "present value": PV,
+        "npv": npv, "net present value": npv,
+        "annuity": annuity,
+        "loan amortization": loan_amortization,
+    }
+    des = input("What would you like to calculate? ").lower()
+    try:
+        print(choices[des]())
+    except:
+        print("Your input is not valid\nTry checking your input again")
 
 
 
